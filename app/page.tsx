@@ -25,46 +25,129 @@ async function getServices() {
 }
 
 // ============================================
-// HOMEPAGE COMPONENT (Now async!)
+// HOMEPAGE COMPONENT
 // ============================================
 export default async function HomePage() {
   const services = await getServices();
 
   return (
     <>
-      {/* ===== HERO SECTION ===== */}
+      {/* ===== HERO SECTION WITH PLUMBING SERVICE CARD ===== */}
       <section className="relative bg-[#1A2E3F] overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[url('/grid.svg')] bg-center" />
-        <div className="max-w-7xl mx-auto px-4 py-24 md:py-32 relative z-10">
-          <div className="max-w-2xl">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="bg-[#C9A96E] text-[#1A2E3F] text-xs font-bold px-3 py-1 rounded-full">🛠️ LONDON'S TRUSTED</span>
+        
+        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            {/* LEFT COLUMN - Text */}
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <span className="bg-[#C9A96E] text-[#1A2E3F] text-xs font-bold px-3 py-1 rounded-full">
+                  🛠️ LONDON'S TRUSTED
+                </span>
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                Your Pipework <br />
+                <span className="text-[#C9A96E]">Emergency Solved.</span>
+              </h1>
+              <p className="text-gray-300 text-lg mt-6 max-w-lg">
+                {BRAND.name} provides rapid, reliable plumbing and heating services across London. 
+                We show you the proof with our <strong className="text-white">Before & After</strong> gallery.
+              </p>
+              <div className="flex flex-wrap gap-4 mt-8">
+                <Link 
+                  href="/quote" 
+                  className="bg-[#C9A96E] text-[#1A2E3F] px-8 py-4 rounded-full font-bold text-lg hover:bg-[#B89A5E] transition shadow-xl shadow-[#C9A96E]/30"
+                >
+                  Get Free Quote
+                </Link>
+                <Link 
+                  href="/gallery" 
+                  className="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition backdrop-blur-sm"
+                >
+                  View Our Work
+                </Link>
+              </div>
+              <div className="flex items-center gap-6 mt-10 text-sm text-gray-400">
+                <span>✅ 10+ Years Experience</span>
+                <span>✅ Fully Insured</span>
+                <span>✅ 24/7 Call-out</span>
+              </div>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
-              Your Pipework <br />
-              <span className="text-[#C9A96E]">Emergency Solved.</span>
-            </h1>
-            <p className="text-gray-300 text-lg mt-6 max-w-lg">
-              {BRAND.name} provides rapid, reliable plumbing and heating services across London. We show you the proof with our <strong className="text-white">Before & After</strong> gallery.
-            </p>
-            <div className="flex flex-wrap gap-4 mt-8">
-              <Link href="/quote" className="bg-[#C9A96E] text-[#1A2E3F] px-8 py-4 rounded-full font-bold text-lg hover:bg-[#B89A5E] transition shadow-xl shadow-[#C9A96E]/30">
-                Get Free Quote
-              </Link>
-              <Link href="/gallery" className="bg-white/10 text-white border border-white/20 px-8 py-4 rounded-full font-bold text-lg hover:bg-white/20 transition backdrop-blur-sm">
-                View Our Work
-              </Link>
+
+            {/* RIGHT COLUMN - Plumbing Services Card (Recovery Vault style) */}
+            <div className="relative hidden lg:block">
+              <div className="bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
+                
+                {/* Card Header */}
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <p className="text-xs text-gray-300 uppercase tracking-wider">Available Services</p>
+                    <h3 className="text-white text-xl font-bold">Plumbing & Heating</h3>
+                  </div>
+                  <div className="bg-[#C9A96E]/20 p-2 rounded-lg">
+                    <span className="text-[#C9A96E] text-sm font-bold">24/7</span>
+                  </div>
+                </div>
+
+                {/* Service Icons Grid */}
+                <div className="grid grid-cols-3 gap-3">
+                  {[
+                    { name: 'Burst Pipes', icon: '💧' },
+                    { name: 'Boiler Repair', icon: '🔥' },
+                    { name: 'Drainage', icon: '🚽' },
+                    { name: 'Installations', icon: '🔧' },
+                    { name: 'Emergency', icon: '🚨' },
+                    { name: 'Heating', icon: '🌡️' },
+                  ].map((service) => (
+                    <div 
+                      key={service.name}
+                      className="bg-white/5 rounded-xl p-3 text-center hover:bg-white/10 transition border border-white/5 hover:border-[#C9A96E]/30 group cursor-pointer"
+                    >
+                      <div className="text-2xl mb-1">{service.icon}</div>
+                      <p className="text-white text-xs font-medium group-hover:text-[#C9A96E] transition">
+                        {service.name}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Bottom Actions */}
+                <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-white/10">
+                  <a 
+                    href={`tel:${BRAND.emergencyPhone}`}
+                    className="bg-[#C9A96E] text-[#1A2E3F] py-2 rounded-xl font-bold text-sm hover:bg-[#B89A5E] transition text-center"
+                  >
+                    📞 Call Now
+                  </a>
+                  <Link 
+                    href="/quote"
+                    className="bg-white/10 text-white py-2 rounded-xl font-bold text-sm hover:bg-white/20 transition border border-white/10 text-center"
+                  >
+                    📝 Get Quote
+                  </Link>
+                </div>
+
+                {/* Trust Badge */}
+                <div className="flex items-center justify-between mt-3 pt-3 border-t border-white/10">
+                  <div className="flex items-center gap-2">
+                    <span className="text-yellow-400 text-sm">⭐⭐⭐⭐⭐</span>
+                    <span className="text-gray-300 text-xs">4.9/5 (127 reviews)</span>
+                  </div>
+                  <span className="text-[#C9A96E] text-xs font-bold">London's Best</span>
+                </div>
+
+              </div>
+
+              {/* Floating decorative element */}
+              <div className="absolute -z-10 -bottom-6 -right-6 w-32 h-32 bg-[#C9A96E]/10 rounded-full blur-2xl" />
             </div>
-            <div className="flex items-center gap-6 mt-10 text-sm text-gray-400">
-              <span>✅ 10+ Years Experience</span>
-              <span>✅ Fully Insured</span>
-              <span>✅ 24/7 Call-out</span>
-            </div>
+
           </div>
         </div>
       </section>
 
-      {/* ===== SERVICES SECTION (NOW DYNAMIC!) ===== */}
+      {/* ===== SERVICES SECTION (DYNAMIC) ===== */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-[#1A2E3F]">What We Fix</h2>
