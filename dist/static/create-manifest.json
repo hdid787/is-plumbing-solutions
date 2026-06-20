@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-06-20T21:53:36.372Z",
+  "createdAt": "2026-06-20T22:40:12.991Z",
   "studioVersion": "6.1.0",
   "version": 3,
   "workspaces": [
@@ -13,7 +13,7 @@
       },
       "name": "default",
       "projectId": "u8s8h6tm",
-      "schema": "7069353b.create-schema.json",
+      "schema": "2e4d3c73.create-schema.json",
       "title": "Is Plumbing Solution",
       "tools": "ef87c8fe.create-tools.json"
     }

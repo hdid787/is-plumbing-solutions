@@ -99,6 +99,17 @@ export default function QuotePage() {
               <input {...register('phone')} type="tel" className="w-full mt-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#C9A96E] focus:border-transparent outline-none" />
             </div>
 
+            {/* NEW: Postcode field */}
+            <div>
+              <label className="block text-sm font-bold text-[#1A2E3F]">Postcode (Optional)</label>
+              <input 
+                {...register('postcode')} 
+                type="text" 
+                placeholder="e.g., SW1A 1AA" 
+                className="w-full mt-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#C9A96E] focus:border-transparent outline-none uppercase" 
+              />
+            </div>
+
             <div>
               <label className="block text-sm font-bold text-[#1A2E3F]">Describe the Issue *</label>
               <textarea {...register('description')} rows={4} className="w-full mt-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[#C9A96E] focus:border-transparent outline-none" />

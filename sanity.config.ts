@@ -1,18 +1,19 @@
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
-import { schemaTypes } from './sanity/schemaTypes'   // <-- Changed from 'schema' to 'schemaTypes'
+import { schemaTypes } from './sanity/schemaTypes'
 
 export default defineConfig({
   name: 'default',
   title: 'Is Plumbing Solution',
 
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  // Hardcode the project ID and dataset (they never change)
+  projectId: 'u8s8h6tm',
+  dataset: 'production',
 
   plugins: [structureTool(), visionTool()],
 
   schema: {
-    types: schemaTypes,   // <-- Changed from 'schema' to 'schemaTypes'
+    types: schemaTypes,
   },
 })

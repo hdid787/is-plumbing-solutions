@@ -6,4 +6,6 @@ export const BRAND = {
   email: 'info@isplumbingsolution.com', // Updated email
   address: '27 Old Gloucester St, London WC1N 3AX',
   emergencyPhone: '+44 7700 900123',
+  companyRegistration: '12345678',      // <-- Add your real company number
+  vatNumber: 'GB 123 4567 89',          // <-- Optional (can leave out)
 };

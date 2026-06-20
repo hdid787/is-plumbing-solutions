@@ -65,7 +65,8 @@ export async function POST(request: Request) {
       .insert([{ 
         name: validated.name, 
         email: validated.email, 
-        phone: validated.phone || null, 
+        phone: validated.phone || null,
+        postcode: validated.postcode || null, // <-- NEW: Save postcode
         description: validated.description,
         image_url: validated.imageUrl || null 
       }]);
@@ -84,7 +85,7 @@ export async function POST(request: Request) {
     const galleryUrl = `${baseUrl}/gallery`;
     const formattedPhone = BRAND.emergencyPhone;
 
-    // Email 1: To the plumber (internal notification)
+    // Email 1: To the plumber (internal notification) – now includes postcode
     resend.emails.send({
       from: `${BRAND.name} <onboarding@resend.dev>`,
       to: [BRAND.email],
@@ -94,6 +95,7 @@ export async function POST(request: Request) {
         <p><strong>Name:</strong> ${validated.name}</p>
         <p><strong>Email:</strong> ${validated.email}</p>
         <p><strong>Phone:</strong> ${validated.phone || 'Not provided'}</p>
+        <p><strong>Postcode:</strong> ${validated.postcode || 'Not provided'}</p> <!-- NEW -->
         <p><strong>Issue:</strong> ${validated.description}</p>
         ${validated.imageUrl ? `<p><strong>Photo:</strong> <a href="${validated.imageUrl}">View Uploaded Photo</a></p>` : ''}
         <hr />

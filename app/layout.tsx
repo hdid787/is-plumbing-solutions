@@ -4,15 +4,15 @@ import './globals.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import StickyCallButton from './components/StickyCallButton';
+import { GoogleAnalytics } from '@next/third-parties/google'; // <-- ADDED
 import { BRAND } from '@/lib/config';
 
 const inter = Inter({ subsets: ['latin'] });
 
-// UPDATED: Dynamic metadata template for better SEO per page
 export const metadata: Metadata = {
   title: {
     default: BRAND.name,
-    template: `%s – ${BRAND.name}`, // Allows pages to set their own title: "Boiler Repair – Is Plumbing Solution"
+    template: `%s – ${BRAND.name}`,
   },
   description: 'Expert plumbing and heating services across London. Emergency call-outs 24/7.',
 };
@@ -22,23 +22,22 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // UPDATED: Enhanced Schema Markup with more fields for better Google Map Pack ranking
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Plumber',
     name: BRAND.name,
-    image: 'https://your-vercel-url.vercel.app/logo.png', // <-- UPDATE THIS with your actual logo URL after deploy
+    image: `${process.env.NEXT_PUBLIC_APP_URL || 'https://your-vercel-url.vercel.app'}/logo.png`,
     telephone: BRAND.phone,
     address: {
       '@type': 'PostalAddress',
-      streetAddress: BRAND.address.split(',')[0] || '27 Old Gloucester St', // Extracts first part
+      streetAddress: BRAND.address.split(',')[0] || '27 Old Gloucester St',
       addressLocality: 'London',
       postalCode: 'WC1N 3AX',
       addressCountry: 'GB',
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 51.5197, // Approximate London coordinates – replace with exact location
+      latitude: 51.5197,
       longitude: -0.1270,
     },
     openingHoursSpecification: [
@@ -56,15 +55,13 @@ export default function RootLayout({
       },
     ],
     priceRange: '££',
-    // ADDED: Aggregate rating – this helps you show stars in Google search results
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.9',
       reviewCount: '127',
     },
-    // ADDED: SameAs – links to your social media profiles (helps Google trust you)
     sameAs: [
-      'https://facebook.com/your-page', // <-- Update with real URLs later
+      'https://facebook.com/your-page',
       'https://instagram.com/your-page',
       'https://twitter.com/your-page',
     ],
@@ -83,6 +80,8 @@ export default function RootLayout({
         <main className="flex-grow">{children}</main>
         <StickyCallButton />
         <Footer />
+        {/* Google Analytics – replace G-XXXXXXXXXX with your actual Measurement ID */}
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX'} />
       </body>
     </html>
   );

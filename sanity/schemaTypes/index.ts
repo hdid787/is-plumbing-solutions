@@ -69,7 +69,7 @@ export const blogPostSchema = defineType({
 });
 
 // ============================================
-// 2. HYPER-LOCAL LANDING PAGES SCHEMA
+// 2. HYPER-LOCAL LANDING PAGES SCHEMA (UPDATED WITH IMAGES)
 // ============================================
 export const pageSchema = defineType({
   name: 'page',
@@ -89,11 +89,23 @@ export const pageSchema = defineType({
       options: { source: 'title', maxLength: 96 },
       validation: Rule => Rule.required() 
     }),
+    // NEW: Hero image for the top of the page
+    defineField({ 
+      name: 'heroImage', 
+      title: 'Hero / Banner Image', 
+      type: 'image', 
+      options: { hotspot: true },
+      description: 'Optional – a main image at the top of the page.'
+    }),
+    // UPDATED: Content now allows images inline
     defineField({ 
       name: 'content', 
       title: 'Page Content', 
       type: 'array', 
-      of: [defineArrayMember({ type: 'block' })] 
+      of: [
+        defineArrayMember({ type: 'block' }),
+        defineArrayMember({ type: 'image', options: { hotspot: true } }) // <-- Allows images inside content
+      ] 
     }),
     defineField({ 
       name: 'seoTitle', 
@@ -170,7 +182,7 @@ export const projectSchema = defineType({
 });
 
 // ============================================
-// 5. SERVICES SCHEMA (NEW - What We Fix)
+// 5. SERVICES SCHEMA (What We Fix) - WITH IMAGE
 // ============================================
 export const serviceSchema = defineType({
   name: 'service',
@@ -201,6 +213,12 @@ export const serviceSchema = defineType({
       type: 'string' 
     }),
     defineField({ 
+      name: 'serviceImage',
+      title: 'Service Image',
+      type: 'image',
+      options: { hotspot: true }
+    }),
+    defineField({ 
       name: 'order', 
       title: 'Display Order (1, 2, 3...)', 
       type: 'number', 
@@ -222,5 +240,5 @@ export const schemaTypes = [
   pageSchema, 
   siteSettingsSchema, 
   projectSchema, 
-  serviceSchema  // <-- NEW ONE ADDED
+  serviceSchema
 ];
