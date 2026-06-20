@@ -32,12 +32,11 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* ===== HERO SECTION WITH PLUMBING SERVICE CARD ===== */}
+      {/* ===== HERO SECTION WITH RESPONSIVE CARD ===== */}
       <section className="relative bg-[#1A2E3F] overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[url('/grid.svg')] bg-center" />
-        
-        <div className="max-w-7xl mx-auto px-4 py-16 md:py-24 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-4 py-12 md:py-20 lg:py-24 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             
             {/* LEFT COLUMN - Text */}
             <div>
@@ -51,8 +50,7 @@ export default async function HomePage() {
                 <span className="text-[#C9A96E]">Emergency Solved.</span>
               </h1>
               <p className="text-gray-300 text-lg mt-6 max-w-lg">
-                {BRAND.name} provides rapid, reliable plumbing and heating services across London. 
-                We show you the proof with our <strong className="text-white">Before & After</strong> gallery.
+                {BRAND.name} provides rapid, reliable plumbing and heating services across London. We show you the proof with our <strong className="text-white">Before & After</strong> gallery.
               </p>
               <div className="flex flex-wrap gap-4 mt-8">
                 <Link 
@@ -75,23 +73,23 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* RIGHT COLUMN - Plumbing Services Card (Recovery Vault style) */}
-            <div className="relative hidden lg:block">
-              <div className="bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 p-6 shadow-2xl">
+            {/* RIGHT COLUMN - Plumbing Services Card (Responsive) */}
+            <div className="relative mt-8 lg:mt-0">
+              <div className="bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 p-4 sm:p-6 shadow-2xl">
                 
                 {/* Card Header */}
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
                   <div>
-                    <p className="text-xs text-gray-300 uppercase tracking-wider">Available Services</p>
-                    <h3 className="text-white text-xl font-bold">Plumbing & Heating</h3>
+                    <p className="text-[10px] sm:text-xs text-gray-300 uppercase tracking-wider">Available Services</p>
+                    <h3 className="text-white text-base sm:text-xl font-bold">Plumbing & Heating</h3>
                   </div>
-                  <div className="bg-[#C9A96E]/20 p-2 rounded-lg">
-                    <span className="text-[#C9A96E] text-sm font-bold">24/7</span>
+                  <div className="bg-[#C9A96E]/20 p-1.5 sm:p-2 rounded-lg">
+                    <span className="text-[#C9A96E] text-[10px] sm:text-sm font-bold">24/7</span>
                   </div>
                 </div>
 
-                {/* Service Icons Grid */}
-                <div className="grid grid-cols-3 gap-3">
+                {/* Service Icons Grid - Responsive */}
+                <div className="grid grid-cols-3 gap-1.5 sm:gap-3">
                   {[
                     { name: 'Burst Pipes', icon: '💧' },
                     { name: 'Boiler Repair', icon: '🔥' },
@@ -102,10 +100,10 @@ export default async function HomePage() {
                   ].map((service) => (
                     <div 
                       key={service.name}
-                      className="bg-white/5 rounded-xl p-3 text-center hover:bg-white/10 transition border border-white/5 hover:border-[#C9A96E]/30 group cursor-pointer"
+                      className="bg-white/5 rounded-lg sm:rounded-xl p-2 sm:p-3 text-center hover:bg-white/10 transition border border-white/5 hover:border-[#C9A96E]/30 group cursor-pointer"
                     >
-                      <div className="text-2xl mb-1">{service.icon}</div>
-                      <p className="text-white text-xs font-medium group-hover:text-[#C9A96E] transition">
+                      <div className="text-xl sm:text-2xl mb-0.5 sm:mb-1">{service.icon}</div>
+                      <p className="text-[10px] sm:text-xs text-white font-medium group-hover:text-[#C9A96E] transition">
                         {service.name}
                       </p>
                     </div>
@@ -113,32 +111,31 @@ export default async function HomePage() {
                 </div>
 
                 {/* Bottom Actions */}
-                <div className="grid grid-cols-2 gap-3 mt-4 pt-4 border-t border-white/10">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-white/10">
                   <a 
                     href={`tel:${BRAND.emergencyPhone}`}
-                    className="bg-[#C9A96E] text-[#1A2E3F] py-2 rounded-xl font-bold text-sm hover:bg-[#B89A5E] transition text-center"
+                    className="bg-[#C9A96E] text-[#1A2E3F] py-1.5 sm:py-2 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm hover:bg-[#B89A5E] transition text-center"
                   >
                     📞 Call Now
                   </a>
                   <Link 
                     href="/quote"
-                    className="bg-white/10 text-white py-2 rounded-xl font-bold text-sm hover:bg-white/20 transition border border-white/10 text-center"
+                    className="bg-white/10 text-white py-1.5 sm:py-2 rounded-lg sm:rounded-xl font-bold text-xs sm:text-sm hover:bg-white/20 transition border border-white/10 text-center"
                   >
                     📝 Get Quote
                   </Link>
                 </div>
 
                 {/* Trust Badge */}
-                <div className="flex items-center justify-between mt-3 pt-3 border-t border-white/10">
-                  <div className="flex items-center gap-2">
-                    <span className="text-yellow-400 text-sm">⭐⭐⭐⭐⭐</span>
-                    <span className="text-gray-300 text-xs">4.9/5 (127 reviews)</span>
+                <div className="flex items-center justify-between mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-white/10">
+                  <div className="flex items-center gap-1 sm:gap-2">
+                    <span className="text-yellow-400 text-[10px] sm:text-sm">⭐⭐⭐⭐⭐</span>
+                    <span className="text-gray-300 text-[8px] sm:text-xs">4.9/5 (127 reviews)</span>
                   </div>
-                  <span className="text-[#C9A96E] text-xs font-bold">London's Best</span>
+                  <span className="text-[#C9A96E] text-[8px] sm:text-xs font-bold">London's Best</span>
                 </div>
 
               </div>
-
               {/* Floating decorative element */}
               <div className="absolute -z-10 -bottom-6 -right-6 w-32 h-32 bg-[#C9A96E]/10 rounded-full blur-2xl" />
             </div>
